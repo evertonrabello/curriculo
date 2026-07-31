@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Everton Rabello Alves — Currículo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #F7F8F7;
+    --bg-card: #FFFFFF;
+    --ink: #17191C;
+    --ink-soft: #565D66;
+    --ink-faint: #8B929B;
+    --rule: #E1E4E7;
+    --steel: #3E5866;
+    --steel-soft: #6C8998;
+    --rust: #B5533C;
+    --rust-soft: #E8D9D4;
+  }
+
+  *{ box-sizing: border-box; }
+
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin:0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a{ color: var(--steel); text-decoration: none; border-bottom: 1px solid var(--steel-soft); }
+  a:hover{ color: var(--rust); border-color: var(--rust); }
+
+  h1,h2,h3,h4{ font-family: 'Fraunces', serif; font-weight: 600; margin: 0; color: var(--ink); }
+
+  .lang-en{ display:none; }
+  body.lang-en .lang-pt{ display:none; }
+  body.lang-en .lang-en{ display:inline; }
+  body.lang-en .lang-en.block{ display:block; }
+
+  /* ---- Top bar ---- */
+  .topbar{
+    position: sticky; top:0; z-index: 50;
+    background: rgba(247,248,247,0.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .topbar-inner{
+    max-width: 760px; margin: 0 auto;
+    padding: 14px 24px;
+    display:flex; align-items:center; justify-content: flex-end;
+    gap: 10px;
+  }
+  .btn{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+    background: transparent;
+    border: 1px solid var(--rule);
+    color: var(--ink-soft);
+    padding: 7px 12px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all .15s ease;
+  }
+  .btn:hover{ border-color: var(--steel); color: var(--steel); }
+  .btn.active{ background: var(--ink); color: #fff; border-color: var(--ink); }
+  .btn-group{ display:flex; border: 1px solid var(--rule); border-radius: 3px; overflow:hidden; }
+  .btn-group .btn{ border: none; border-radius: 0; }
+  .btn-group .btn + .btn{ border-left: 1px solid var(--rule); }
+
+  /* ---- Page ---- */
+  .page{ max-width: 760px; margin: 0 auto; padding: 56px 24px 90px; }
+
+  /* ---- Header ---- */
+  header.profile{
+    display:flex; gap: 28px; align-items: flex-start;
+    margin-bottom: 40px;
+  }
+  header.profile .photo{
+    flex: 0 0 108px;
+    width: 108px; height: 108px;
+    border-radius: 4px;
+    overflow: hidden;
+    background: var(--ink);
+    box-shadow: 0 0 0 1px var(--rule);
+  }
+  header.profile .photo img{ width:100%; height:100%; object-fit: cover; display:block; }
+
+  header.profile .id{ flex: 1; min-width: 0; }
+
+  h1.name{
+    font-size: clamp(30px, 5vw, 40px);
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+  }
+
+  .role{
+    margin-top: 8px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--steel);
+    line-height: 1.5;
+  }
+
+  .contact{
+    margin-top: 16px;
+    display: flex; flex-wrap: wrap; gap: 6px 16px;
+    font-size: 13.5px;
+    color: var(--ink-soft);
+  }
+  .contact span{ display:inline-flex; align-items:center; gap:6px; white-space: nowrap; }
+  .contact a{ color: var(--ink-soft); border-bottom: 1px solid var(--rule); }
+  .contact a:hover{ color: var(--rust); border-color: var(--rust); }
+  .dot{ color: var(--ink-faint); }
+
+  /* ---- Section ---- */
+  section{ margin-top: 46px; }
+  .sec-head{
+    display:flex; align-items: baseline; gap: 12px;
+    margin-bottom: 22px;
+  }
+  .sec-head h2{ font-size: 21px; white-space: nowrap; }
+  .sec-head .rule{ flex:1; height:1px; background: var(--rule); }
+
+  .about p{ color: var(--ink-soft); font-size: 15.5px; }
+
+  /* ---- Experience (legal-article styled entries) ---- */
+  .entry{
+    display: grid;
+    grid-template-columns: 46px 1fr;
+    gap: 4px 18px;
+    padding-bottom: 30px;
+    position: relative;
+  }
+  .entry:not(:last-child)::after{
+    content:"";
+    position:absolute; left: 22px; top: 30px; bottom: 0;
+    width: 1px; background: var(--rule);
+  }
+  .entry .art{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+    color: var(--rust);
+    background: var(--rust-soft);
+    border-radius: 3px;
+    width: 44px; height: 26px;
+    display:flex; align-items:center; justify-content:center;
+    margin-top: 2px;
+  }
+  .entry .content{ min-width:0; }
+  .entry .row-top{
+    display:flex; flex-wrap: wrap; align-items: baseline;
+    justify-content: space-between; gap: 6px 14px;
+  }
+  .entry h3{ font-size: 17px; font-weight: 600; }
+  .entry .org{ font-size: 14.5px; color: var(--ink-soft); margin-top: 2px; }
+  .entry .dates{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--ink-faint);
+    white-space: nowrap;
+  }
+  .entry ul{ margin: 12px 0 0; padding-left: 18px; }
+  .entry li{ margin-bottom: 9px; font-size: 14.5px; color: var(--ink-soft); }
+  .entry li::marker{ color: var(--steel-soft); }
+  .entry li b, .entry li strong{ color: var(--ink); font-weight: 600; }
+
+  /* ---- Education / Certifications lists ---- */
+  .list-plain{ list-style: none; margin:0; padding:0; display:flex; flex-direction:column; gap: 14px; }
+  .list-plain li{
+    display:flex; gap: 14px; align-items: flex-start;
+    font-size: 15px; color: var(--ink);
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .list-plain li:last-child{ border-bottom: none; padding-bottom:0; }
+  .list-plain .mark{ color: var(--rust); font-family:'IBM Plex Mono',monospace; font-size: 13px; margin-top: 2px; }
+  .list-plain .txt b{ font-weight: 600; }
+  .list-plain .txt .org{ display:block; color: var(--ink-soft); font-size: 13.5px; margin-top: 2px; }
+  .tag-progress{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px; color: var(--steel);
+    border: 1px solid var(--steel-soft);
+    padding: 1px 6px; border-radius: 10px;
+    margin-left: 8px;
+    white-space: nowrap;
+  }
+
+  .cert-meta{
+    display:block; color: var(--ink-soft); font-size: 13.5px; margin-top: 2px;
+  }
+  .cert-cred{
+    display:flex; flex-wrap:wrap; align-items:center; gap: 8px;
+    margin-top: 6px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11.5px; color: var(--ink-faint);
+  }
+  .cert-cred a{
+    font-family: 'Inter', sans-serif;
+    font-size: 12.5px;
+    color: var(--rust);
+    border-bottom: 1px solid transparent;
+  }
+  .cert-cred a:hover{ border-color: var(--rust); }
+
+  /* ---- Footer ---- */
+  footer{
+    margin-top: 60px;
+    padding-top: 20px;
+    border-top: 1px solid var(--rule);
+    font-size: 12px;
+    color: var(--ink-faint);
+    display:flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  .toast{
+    position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(20px);
+    background: var(--ink); color: #fff;
+    font-size: 13px; padding: 10px 18px; border-radius: 4px;
+    opacity: 0; pointer-events: none;
+    transition: all .25s ease;
+    font-family: 'Inter', sans-serif;
+    z-index: 100;
+  }
+  .toast.show{ opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  @media (max-width: 520px){
+    header.profile{ flex-direction: column; align-items:flex-start; }
+    .entry{ grid-template-columns: 34px 1fr; gap: 4px 12px; }
+    .entry .art{ width: 34px; height: 22px; font-size: 11px; }
+    .entry:not(:last-child)::after{ left: 16px; }
+  }
+
+  @media print{
+    .topbar, .toast{ display:none; }
+    body{ background: #fff; }
+    .page{ padding: 0; max-width: 100%; }
+    a{ border-bottom: none; color: var(--ink); }
+    .entry:not(:last-child)::after{ display:none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="btn-group">
+      <button class="btn" id="btn-pt">PT</button>
+      <button class="btn" id="btn-en">EN</button>
+    </div>
+    <button class="btn" id="btn-print">
+      <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
+    </button>
+    <button class="btn" id="btn-share">
+      <span class="lang-pt">Compartilhar</span><span class="lang-en">Share</span>
+    </button>
+  </div>
+</div>
+
+<div class="page">
+
+  <header class="profile">
+    <div class="photo"><img src="foto_opt.jpg" alt="Everton Rabello Alves"></div>
+    <div class="id">
+      <h1 class="name">Everton Rabello Alves</h1>
+      <div class="role">
+        <span class="lang-pt">Especialista em Marketing Digital &amp; Compliance | Análise de Dados | Estratégia de Conteúdo</span>
+        <span class="lang-en">Digital Marketing &amp; Compliance Specialist | Data Analysis | Content Strategy</span>
+      </div>
+      <div class="contact">
+        <span><span class="lang-pt">Valença, Rio de Janeiro, Brasil</span><span class="lang-en">Valença, Rio de Janeiro, Brazil</span></span>
+        <span class="dot">·</span>
+        <span><a href="tel:+5524999194394">(24) 99919-4394</a></span>
+        <span class="dot">·</span>
+        <span><a href="mailto:everton_rabello@hotmail.com">everton_rabello@hotmail.com</a></span>
+        <span class="dot">·</span>
+        <span><a href="https://www.linkedin.com/in/evertonrabello" target="_blank" rel="noopener">linkedin.com/in/evertonrabello</a></span>
+      </div>
+    </div>
+  </header>
+
+  <section class="about">
+    <div class="sec-head">
+      <h2><span class="lang-pt">Sobre Mim</span><span class="lang-en">About Me</span></h2>
+      <div class="rule"></div>
+    </div>
+    <p class="lang-pt">Minha trajetória profissional foi construída com o pé na rua e a mente na estratégia. Após me formar em Direito, iniciei minha carreira na gestão governamental na Prefeitura de Valença, onde desenvolvi uma visão administrativa sólida e foco em processos. Em seguida, a experiência de atuar na linha de frente logística nos Correios me trouxe um entendimento prático insubstituível sobre roteirização, inteligência de território e resiliência diária.</p>
+    <p class="lang-pt">Nos últimos oito anos, atuando na segurança pública municipal, refinei minha capacidade de comunicação sob pressão, leitura de cenário e disciplina operacional. Essa vivência de campo sempre foi acompanhada por uma busca contínua por atualização técnica: formei-me em Marketing Digital, concluí uma pós-graduação em Marketing e Big Data e Design Gráfico, atualmente, curso especialização em Publicidade e Propaganda. Esse movimento constante afia minha capacidade de unir a análise de dados à comunicação persuasiva para gerar demanda e impulsionar negócios.</p>
+    <p class="lang-pt">Hoje, busco aplicar essa sólida bagagem de relacionamento e operação em posições comerciais e de inteligência de mercado. Meu foco é atuar em frentes que exijam gerenciamento eficiente de rotas, construção de parcerias éticas e argumentação estratégica para a geração de resultados.</p>
+    <p class="lang-en">My professional path was built with one foot on the street and my mind on strategy. After graduating in Law, I started my career in government management at Valença City Hall, where I developed a solid administrative outlook and a focus on process. Next, working the logistics front line at Correios gave me an irreplaceable, hands-on understanding of routing, territory intelligence, and daily resilience.</p>
+    <p class="lang-en">Over the past eight years, working in municipal public safety, I sharpened my ability to communicate under pressure, read a scene, and hold operational discipline. That field experience has always run alongside a steady drive for technical growth: I earned a degree in Digital Marketing, completed postgraduate studies in Marketing &amp; Big Data and Graphic Design, and I'm currently pursuing a specialization in Advertising. That constant movement sharpens my ability to pair data analysis with persuasive communication to generate demand and drive business forward.</p>
+    <p class="lang-en">Today, I'm looking to apply this solid foundation of relationship-building and field operation to commercial and market intelligence roles. My focus is on work that calls for efficient route management, building ethical partnerships, and strategic argumentation to drive results.</p>
+  </section>
+
+  <section class="experience">
+    <div class="sec-head">
+      <h2><span class="lang-pt">Experiência Profissional</span><span class="lang-en">Professional Experience</span></h2>
+      <div class="rule"></div>
+    </div>
+
+    <div class="entry">
+      <div class="art">§01</div>
+      <div class="content">
+        <div class="row-top">
+          <h3><span class="lang-pt">Guarda Civil Municipal</span><span class="lang-en">Municipal Civil Guard</span></h3>
+          <span class="dates"><span class="lang-pt">Ago 2018 – Atual</span><span class="lang-en">Aug 2018 – Present</span></span>
+        </div>
+        <div class="org"><span class="lang-pt">Prefeitura Municipal de Barra do Piraí/RJ</span><span class="lang-en">Barra do Piraí City Hall / RJ</span></div>
+        <ul>
+          <li class="lang-pt"><b>Aplicação de Normas e Compliance:</b> Garanto a conformidade com as regulamentações municipais e federais, realizando a fiscalização e a proteção preventiva. Minha atuação é pautada pela análise criteriosa de cenários para mitigar riscos e assegurar a aplicação da lei, mantendo um ambiente seguro e em conformidade.</li>
+          <li class="lang-en"><b>Rule Enforcement &amp; Compliance:</b> Ensure compliance with municipal and federal regulations through inspection and preventive protection. My approach relies on careful scenario analysis to mitigate risk and uphold the law, keeping the environment safe and compliant.</li>
+          <li class="lang-pt"><b>Documentação e Relatórios Técnicos:</b> Sou responsável pela elaboração de relatórios detalhados e documentação de ocorrências, uma atividade que exige precisão e clareza para garantir a rastreabilidade e a validade das informações em processos de auditoria e fiscalização.</li>
+          <li class="lang-en"><b>Technical Documentation &amp; Reporting:</b> Responsible for drafting detailed reports and incident documentation, work that demands precision and clarity to ensure traceability and validity of information in audits and inspections.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="art">§02</div>
+      <div class="content">
+        <div class="row-top">
+          <h3><span class="lang-pt">Social Media Manager &amp; Criador de Conteúdo</span><span class="lang-en">Social Media Manager &amp; Content Creator</span></h3>
+          <span class="dates"><span class="lang-pt">Dez 2016 – Atual</span><span class="lang-en">Dec 2016 – Present</span></span>
+        </div>
+        <div class="org"><span class="lang-pt">A Besta de Ferro (Projeto Próprio)</span><span class="lang-en">A Besta de Ferro (Personal Project)</span></div>
+        <ul>
+          <li class="lang-pt"><b>Estratégia de Marketing e Análise de Dados:</b> Desenvolvi e executei campanhas de Inbound Marketing e marketing de conteúdo para uma comunidade gamer/geek. Utilizando ferramentas como Google Analytics, realizei a análise de métricas de engajamento e crescimento, o que permitiu ajustar as estratégias e alcançar um crescimento orgânico sustentável.</li>
+          <li class="lang-en"><b>Marketing Strategy &amp; Data Analysis:</b> Developed and ran Inbound Marketing and content marketing campaigns for a gaming/geek community. Using tools like Google Analytics, I analyzed engagement and growth metrics to refine strategy and achieve sustainable organic growth.</li>
+          <li class="lang-pt"><b>Gestão de Marca e Conteúdo:</b> Criei a identidade visual e desenvolvi posts e materiais gráficos, gerenciando a presença da marca nas redes sociais. Esta gestão end-to-end resultou na construção de uma comunidade engajada e fiel, demonstrando minha habilidade em relações públicas e comunicação estratégica.</li>
+          <li class="lang-en"><b>Brand &amp; Content Management:</b> Built the visual identity and produced posts and graphic materials, managing the brand's presence across social media. This end-to-end ownership grew an engaged, loyal community, reflecting strong skills in public relations and strategic communication.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="art">§03</div>
+      <div class="content">
+        <div class="row-top">
+          <h3><span class="lang-pt">Carteiro (Temporário)</span><span class="lang-en">Mail Carrier (Temporary)</span></h3>
+          <span class="dates"><span class="lang-pt">Fev 2016 – Mar 2016</span><span class="lang-en">Feb 2016 – Mar 2016</span></span>
+        </div>
+        <div class="org"><span class="lang-pt">Correios</span><span class="lang-en">Correios (Brazilian Postal Service)</span></div>
+        <ul>
+          <li class="lang-pt"><b>Logística e Distribuição:</b> Responsável pela coleta, recebimento, conferência e distribuição de objetos postais e mensagens telegráficas, garantindo o cumprimento de prazos e a integridade das entregas.</li>
+          <li class="lang-en"><b>Logistics &amp; Distribution:</b> Responsible for collecting, receiving, checking, and distributing mail and telegraph messages, ensuring deadlines were met and deliveries stayed intact.</li>
+          <li class="lang-pt"><b>Controle Operacional:</b> Realização de baixa e devolução de objetos postais, atuando com organização e atenção aos detalhes para assegurar a eficiência do fluxo logístico.</li>
+          <li class="lang-en"><b>Operational Control:</b> Processed clearance and returns of postal items, working with organization and attention to detail to keep the logistics flow efficient.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="art">§04</div>
+      <div class="content">
+        <div class="row-top">
+          <h3><span class="lang-pt">Assessor de Gestão Pública</span><span class="lang-en">Public Management Advisor</span></h3>
+          <span class="dates"><span class="lang-pt">Jan 2013 – Set 2015</span><span class="lang-en">Jan 2013 – Sep 2015</span></span>
+        </div>
+        <div class="org"><span class="lang-pt">Prefeitura Municipal de Valença</span><span class="lang-en">Valença City Hall</span></div>
+        <ul>
+          <li class="lang-pt"><b>Otimização de Processos e Análise de Dados:</b> Realizei a análise de dados e informações para planejar e otimizar os procedimentos administrativos. Meu trabalho visava aumentar a eficiência na execução das atividades, aplicando uma abordagem analítica para a resolução de problemas e planejamento de ações.</li>
+          <li class="lang-en"><b>Process Optimization &amp; Data Analysis:</b> Analyzed data and information to plan and optimize administrative procedures, aiming to increase efficiency in day-to-day execution by applying an analytical approach to problem-solving and action planning.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="art">§05</div>
+      <div class="content">
+        <div class="row-top">
+          <h3><span class="lang-pt">Estagiário</span><span class="lang-en">Intern</span></h3>
+          <span class="dates"><span class="lang-pt">Fev 2006 – Nov 2007</span><span class="lang-en">Feb 2006 – Nov 2007</span></span>
+        </div>
+        <div class="org"><span class="lang-pt">Procon-RJ · Estágio</span><span class="lang-en">Procon-RJ · Internship</span></div>
+        <ul>
+          <li class="lang-pt"><b>Atendimento ao Consumidor:</b> Atendimento direto ao cidadão, realizando a triagem de demandas e prestando orientações jurídicas com base no Código de Defesa do Consumidor.</li>
+          <li class="lang-en"><b>Consumer Assistance:</b> Provided direct service to citizens, triaging complaints and offering legal guidance based on Brazil's Consumer Protection Code.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="education">
+    <div class="sec-head">
+      <h2><span class="lang-pt">Formação Acadêmica</span><span class="lang-en">Education</span></h2>
+      <div class="rule"></div>
+    </div>
+    <ul class="list-plain">
+      <li>
+        <span class="mark">—</span>
+        <span class="txt">
+          <span class="lang-pt"><b>Pós-graduação em Publicidade e Propaganda</b><span class="tag-progress">Em andamento</span><span class="org">FAVENI</span></span>
+          <span class="lang-en"><b>Postgraduate Studies in Advertising</b><span class="tag-progress">In progress</span><span class="org">FAVENI</span></span>
+        </span>
+      </li>
+      <li>
+        <span class="mark">—</span>
+        <span class="txt">
+          <span class="lang-pt"><b>Pós-graduação Lato Sensu em Marketing e Big Data</b><span class="org">Faculdade Líbano</span></span>
+          <span class="lang-en"><b>Postgraduate Degree (Lato Sensu) in Marketing &amp; Big Data</b><span class="org">Faculdade Líbano</span></span>
+        </span>
+      </li>
+      <li>
+        <span class="mark">—</span>
+        <span class="txt">
+          <span class="lang-pt"><b>Pós-graduação Lato Sensu em Design Gráfico</b><span class="org">Faculdade Líbano</span></span>
+          <span class="lang-en"><b>Postgraduate Degree (Lato Sensu) in Graphic Design</b><span class="org">Faculdade Líbano</span></span>
+        </span>
+      </li>
+      <li>
+        <span class="mark">—</span>
+        <span class="txt">
+          <span class="lang-pt"><b>Graduação em Marketing Digital</b><span class="org">Universidade Veiga de Almeida</span></span>
+          <span class="lang-en"><b>Bachelor's Degree in Digital Marketing</b><span class="org">Universidade Veiga de Almeida</span></span>
+        </span>
+      </li>
+      <li>
+        <span class="mark">—</span>
+        <span class="txt">
+          <span class="lang-pt"><b>Bacharelado em Direito</b><span class="org">Centro Universitário de Valença (UNIFAA)</span></span>
+          <span class="lang-en"><b>Bachelor's Degree in Law</b><span class="org">Centro Universitário de Valença (UNIFAA)</span></span>
+        </span>
+      </li>
+    </ul>
+  </section>
+
+  <section class="certifications">
+    <div class="sec-head">
+      <h2><span class="lang-pt">Certificações Relevantes</span><span class="lang-en">Relevant Certifications</span></h2>
+      <div class="rule"></div>
+    </div>
+    <ul class="list-plain">
+      <li>
+        <span class="mark">—</span>
+        <span class="txt">
+          <b>Google AI</b><span class="cert-meta">Google</span>
+          <span class="cert-cred">
+            <span class="lang-pt">Emitida em jul de 2026</span><span class="lang-en">Issued Jul 2026</span>
+            <span>· ID 9DASD0FGQIK1</span>
+            <a href="https://www.coursera.org/account/accomplishments/professional-cert/certificate/9DASD0FGQIK1" target="_blank" rel="noopener"><span class="lang-pt">Ver credencial ↗</span><span class="lang-en">View credential ↗</span></a>
+          </span>
+        </span>
+      </li>
+      <li>
+        <span class="mark">—</span>
+        <span class="txt">
+          <span class="lang-pt"><b>UX Writing para Transformação Digital</b><span class="cert-meta">Enap</span></span>
+          <span class="lang-en"><b>UX Writing for Digital Transformation</b><span class="cert-meta">Enap</span></span>
+          <span class="cert-cred">
+            <span class="lang-pt">Emitida em mar de 2026</span><span class="lang-en">Issued Mar 2026</span>
+            <span>· ID g9Ok21312096MZvz</span>
+          </span>
+        </span>
+      </li>
+      <li>
+        <span class="mark">—</span>
+        <span class="txt">
+          <span class="lang-pt"><b>Certificação do Google Analytics</b><span class="cert-meta">Skillshop</span></span>
+          <span class="lang-en"><b>Google Analytics Certification</b><span class="cert-meta">Skillshop</span></span>
+          <span class="cert-cred">
+            <span class="lang-pt">Emitida em jan de 2026 · Expira em jan de 2027</span><span class="lang-en">Issued Jan 2026 · Expires Jan 2027</span>
+            <span>· ID 172029935</span>
+            <a href="https://skillshop.credential.net/c274f155-1a9c-4c1c-ae8b-8ba51cd7f938" target="_blank" rel="noopener"><span class="lang-pt">Ver credencial ↗</span><span class="lang-en">View credential ↗</span></a>
+          </span>
+        </span>
+      </li>
+      <li>
+        <span class="mark">—</span>
+        <span class="txt">
+          <span class="lang-pt"><b>Certificação em Rede de Pesquisa do Google Ads</b><span class="cert-meta">Skillshop</span></span>
+          <span class="lang-en"><b>Google Ads Search Certification</b><span class="cert-meta">Skillshop</span></span>
+          <span class="cert-cred">
+            <span class="lang-pt">Emitida em jan de 2026 · Expira em jan de 2027</span><span class="lang-en">Issued Jan 2026 · Expires Jan 2027</span>
+            <span>· ID 171421498</span>
+            <a href="https://skillshop.credential.net/18721122-427e-4cf9-830e-309f9378ee85" target="_blank" rel="noopener"><span class="lang-pt">Ver credencial ↗</span><span class="lang-en">View credential ↗</span></a>
+          </span>
+        </span>
+      </li>
+      <li>
+        <span class="mark">—</span>
+        <span class="txt">
+          <span class="lang-pt"><b>Certificação em Display do Google Ads</b><span class="cert-meta">Skillshop</span></span>
+          <span class="lang-en"><b>Google Ads Display Certification</b><span class="cert-meta">Skillshop</span></span>
+          <span class="cert-cred">
+            <span class="lang-pt">Emitida em jan de 2026 · Expira em jan de 2027</span><span class="lang-en">Issued Jan 2026 · Expires Jan 2027</span>
+            <span>· ID 171192945</span>
+            <a href="https://skillshop.credential.net/3f1e3ec5-f859-41a4-a860-d5535f5a7b98" target="_blank" rel="noopener"><span class="lang-pt">Ver credencial ↗</span><span class="lang-en">View credential ↗</span></a>
+          </span>
+        </span>
+      </li>
+      <li>
+        <span class="mark">—</span>
+        <span class="txt">
+          <span class="lang-pt"><b>Inbound Marketing</b><span class="cert-meta">HubSpot Academy</span></span>
+          <span class="lang-en"><b>Inbound Marketing</b><span class="cert-meta">HubSpot Academy</span></span>
+          <span class="cert-cred">
+            <span class="lang-pt">Emitida em dez de 2025 · Expira em jan de 2028</span><span class="lang-en">Issued Dec 2025 · Expires Jan 2028</span>
+            <span>· ID 09b445e0a55a47a88bb06300ad169dc3</span>
+            <a href="https://app.hubspot.com/academy/achievements/1rky3nm5/pt/1/everton-rabello-alves/inbound-marketing" target="_blank" rel="noopener"><span class="lang-pt">Ver credencial ↗</span><span class="lang-en">View credential ↗</span></a>
+          </span>
+        </span>
+      </li>
+    </ul>
+  </section>
+
+  <footer>
+    <span>© 2026 Everton Rabello Alves. <span class="lang-pt">Todos os direitos reservados.</span><span class="lang-en">All rights reserved.</span></span>
+    <span class="lang-pt">Currículo digital</span><span class="lang-en">Digital résumé</span>
+  </footer>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  const body = document.body;
+  const btnPt = document.getElementById('btn-pt');
+  const btnEn = document.getElementById('btn-en');
+  const toast = document.getElementById('toast');
+
+  function setLang(lang){
+    if(lang === 'en'){
+      body.classList.add('lang-en');
+      btnEn.classList.add('active');
+      btnPt.classList.remove('active');
+      document.documentElement.lang = 'en';
+    } else {
+      body.classList.remove('lang-en');
+      btnPt.classList.add('active');
+      btnEn.classList.remove('active');
+      document.documentElement.lang = 'pt-BR';
+    }
+    localStorage.setItem('cv-lang', lang);
+  }
+
+  btnPt.addEventListener('click', () => setLang('pt'));
+  btnEn.addEventListener('click', () => setLang('en'));
+
+  const saved = localStorage.getItem('cv-lang');
+  setLang(saved === 'en' ? 'en' : 'pt');
+
+  document.getElementById('btn-print').addEventListener('click', () => window.print());
+
+  document.getElementById('btn-share').addEventListener('click', async () => {
+    const isEn = body.classList.contains('lang-en');
+    try{
+      await navigator.clipboard.writeText(window.location.href);
+      toast.textContent = isEn ? 'Link copied to clipboard!' : 'Link copiado para a área de transferência!';
+    }catch(e){
+      toast.textContent = isEn ? 'Could not copy the link.' : 'Não foi possível copiar o link.';
+    }
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2200);
+  });
+</script>
+
+</body>
+</html>
