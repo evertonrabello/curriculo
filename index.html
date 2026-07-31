@@ -41,9 +41,8 @@
   h1,h2,h3,h4{ font-family: 'Fraunces', serif; font-weight: 600; margin: 0; color: var(--ink); }
 
   .lang-en{ display:none; }
-  body.lang-en .lang-pt{ display:none; }
-  body.lang-en .lang-en{ display:inline; }
-  body.lang-en .lang-en.block{ display:block; }
+  body.is-en .lang-pt{ display:none; }
+  body.is-en .lang-en{ display:revert; }
 
   /* ---- Top bar ---- */
   .topbar{
@@ -529,12 +528,12 @@
 
   function setLang(lang){
     if(lang === 'en'){
-      body.classList.add('lang-en');
+      body.classList.add('is-en');
       btnEn.classList.add('active');
       btnPt.classList.remove('active');
       document.documentElement.lang = 'en';
     } else {
-      body.classList.remove('lang-en');
+      body.classList.remove('is-en');
       btnPt.classList.add('active');
       btnEn.classList.remove('active');
       document.documentElement.lang = 'pt-BR';
@@ -551,7 +550,7 @@
   document.getElementById('btn-print').addEventListener('click', () => window.print());
 
   document.getElementById('btn-share').addEventListener('click', async () => {
-    const isEn = body.classList.contains('lang-en');
+    const isEn = body.classList.contains('is-en');
     try{
       await navigator.clipboard.writeText(window.location.href);
       toast.textContent = isEn ? 'Link copied to clipboard!' : 'Link copiado para a área de transferência!';
