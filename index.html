@@ -115,7 +115,8 @@
     font-size: 13.5px;
     color: var(--ink-soft);
   }
-  .contact span{ display:inline-flex; align-items:center; gap:6px; white-space: nowrap; }
+  /* O erro estava na linha abaixo! Adicionei o ">" para afetar só os spans principais */
+  .contact > span{ display:inline-flex; align-items:center; gap:6px; white-space: nowrap; }
   .contact a{ color: var(--ink-soft); border-bottom: 1px solid var(--rule); }
   .contact a:hover{ color: var(--rust); border-color: var(--rust); }
   .dot{ color: var(--ink-faint); }
@@ -316,8 +317,7 @@
         <span class="lang-en">Digital Marketing &amp; Compliance Specialist | Data Analysis | Content Strategy</span>
       </div>
       <div class="contact">
-        <span class="lang-pt">Valença, Rio de Janeiro, Brasil</span>
-        <span class="lang-en">Valença, Rio de Janeiro, Brazil</span>
+        <span><span class="lang-pt">Valença, Rio de Janeiro, Brasil</span><span class="lang-en">Valença, Rio de Janeiro, Brazil</span></span>
         <span class="dot">·</span>
         <span><a href="https://wa.me/5524999199394" target="_blank" rel="noopener">(24) 99919-9394</a></span>
         <span class="dot">·</span>
