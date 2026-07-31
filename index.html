@@ -129,7 +129,7 @@
   .sec-head h2{ font-size: 21px; white-space: nowrap; }
   .sec-head .rule{ flex:1; height:1px; background: var(--rule); }
 
-  .about p{ color: var(--ink-soft); font-size: 15.5px; }
+  .about p{ color: var(--ink-soft); font-size: 15.5px; text-align: justify; text-justify: inter-word; }
 
   /* ---- Experience (legal-article styled entries) ---- */
   .entry{
@@ -168,7 +168,7 @@
     white-space: nowrap;
   }
   .entry ul{ margin: 12px 0 0; padding-left: 18px; }
-  .entry li{ margin-bottom: 9px; font-size: 14.5px; color: var(--ink-soft); }
+  .entry li{ margin-bottom: 9px; font-size: 14.5px; color: var(--ink-soft); text-align: justify; text-justify: inter-word; }
   .entry li::marker{ color: var(--steel-soft); }
   .entry li b, .entry li strong{ color: var(--ink); font-weight: 600; }
 
@@ -220,6 +220,35 @@
     border-bottom: 1px solid var(--steel-soft);
   }
   .brand-links a:hover{ color: var(--rust); border-color: var(--rust); }
+
+  .stat-row{
+    display:flex; flex-wrap:wrap; gap: 10px;
+    margin: 14px 0 4px;
+  }
+  .stat-box{
+    flex: 1; min-width: 120px;
+    background: var(--bg-card);
+    border: 1px solid var(--rule);
+    border-left: 2px solid var(--rust);
+    border-radius: 3px;
+    padding: 10px 12px;
+  }
+  .stat-box .num{
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 22px;
+    color: var(--ink);
+    line-height: 1.1;
+  }
+  .stat-box .lbl{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    color: var(--ink-faint);
+    margin-top: 4px;
+    display:block;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
 
   /* ---- Footer ---- */
   footer{
@@ -345,6 +374,20 @@
         <div class="brand-links">
           <a href="https://www.facebook.com/abestadeferro" target="_blank" rel="noopener">Facebook ↗</a>
           <a href="https://www.tiktok.com/@abestadeferro" target="_blank" rel="noopener">TikTok ↗</a>
+        </div>
+        <div class="stat-row">
+          <div class="stat-box">
+            <div class="num">2,4 mi</div>
+            <span class="lbl"><span class="lang-pt">Visualizações (3 meses)</span><span class="lang-en">Views (3 months)</span></span>
+          </div>
+          <div class="stat-box">
+            <div class="num">+121%</div>
+            <span class="lbl"><span class="lang-pt">Crescimento</span><span class="lang-en">Growth</span></span>
+          </div>
+          <div class="stat-box">
+            <div class="num">100%</div>
+            <span class="lbl"><span class="lang-pt">Alcance orgânico</span><span class="lang-en">Organic reach</span></span>
+          </div>
         </div>
         <ul>
           <li class="lang-pt"><b>Estratégia de Marketing e Análise de Dados:</b> Desenvolvi e executei campanhas de Inbound Marketing e marketing de conteúdo para uma comunidade gamer/geek. Utilizando ferramentas como Google Analytics, realizei a análise de métricas de engajamento e crescimento, o que permitiu ajustar as estratégias e alcançar um crescimento orgânico sustentável.</li>
